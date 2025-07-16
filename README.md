@@ -1,9 +1,11 @@
 🧠 Gemini-Style AI Chat App
+<br />
 A fully responsive, modern conversational AI frontend simulating Google Gemini chat with features like OTP login, chatroom management, simulated AI replies, image upload, dark mode, pagination, infinite scroll, and enhanced UX/UI using React, Vite, and TailwindCSS.
 
 <br />
 
 🚀 Live Demo
+<br />
 
 https://gemini-ai-kuvaka.netlify.app/
 
@@ -44,23 +46,22 @@ Copy-to-clipboard on hover
 
 🧩 Global UX/UI Features
 Mobile Responsive
-
 Dark Mode Toggle
-
 Toast Notifications
-
 Keyboard Accessible
-
 Loading Skeletons while fetching messages
-
+<br />
 
 Key Implementations
+<br />
 ✅ Form Validation
+<br />
 react-hook-form + zod used to validate OTP login inputs.
 📃 Pagination (Client-side)
 🔁 Reverse Infinite Scroll
 ⌛ Debounced Search
 
+<br />
 
 🧠 Tech Stack
 React + Vite
