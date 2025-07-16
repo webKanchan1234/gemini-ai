@@ -21,6 +21,7 @@ const AuthPage = () => {
   const [otpSent, setOtpSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const { login, darkMode } = useAuth();
+  const [fakeOtp, setFakeOtp] = useState('');
   const navigate = useNavigate();
 
   const {
@@ -33,6 +34,7 @@ const AuthPage = () => {
     register: registerOtp,
     handleSubmit: handleOtpSubmit,
     formState: { errors: otpErrors },
+    setValue: setValueOtp, 
   } = useForm({ resolver: zodResolver(otpSchema) });
 
   useEffect(() => {
@@ -62,14 +64,27 @@ const AuthPage = () => {
     fetchCountries();
   }, []);
 
+
+
   const onPhoneSubmit = (data) => {
     setLoading(true);
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    setFakeOtp(otp);
     setTimeout(() => {
       setOtpSent(true);
       setLoading(false);
       toast.success('OTP sent successfully');
+      toast.info(`Your OTP is ${otp}`, { autoClose: 5000 });
     }, 1000);
+    toast.success('OTP sent successfully');
   };
+  useEffect(() => {
+    if (fakeOtp && otpSent) {
+      setTimeout(() => {
+        setValueOtp('otp', fakeOtp);
+      }, 2000);
+    }
+  }, [fakeOtp, otpSent]);
 
   const onOtpSubmit = (data) => {
     setLoading(true);
@@ -86,7 +101,7 @@ const AuthPage = () => {
         <h2 className={`text-2xl font-bold mb-6 text-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
           {otpSent ? 'Enter OTP' : 'Login with Phone'}
         </h2>
-        
+
         {otpSent ? (
           <form onSubmit={handleOtpSubmit(onOtpSubmit)} className="space-y-4">
             <div>
